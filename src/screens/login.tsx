@@ -27,7 +27,6 @@ const login = ({ history, setAuthorise, authorise }:any) => {
             history.push('/profile');
         });
     };
-    console.log(authorise);
     if (authorise) { return (<Redirect to="/profile" />); }
 
     return (

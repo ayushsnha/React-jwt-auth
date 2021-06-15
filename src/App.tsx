@@ -36,7 +36,7 @@ const App = () => {
             <Switch>
                 <Route path="/" exact component={Landing} />
                 <Route path="/login" render={() => <Login setAuthorise={setAuthorise} authorise={authorise} />} />
-                <Route path="/signup" component={Signup} />
+                <Route path="/signup" render={() => <Signup setAuthorise={setAuthorise} authorise={authorise} />} />
                 <ProtectedRoute path="/profile" isAuthorised={authorise} component={Dashboard} />
                 <Route component={Error} />
             </Switch>

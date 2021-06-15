@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-const signup = () => {
+import { Redirect, withRouter } from 'react-router-dom';
+
+const signup = ({ history, setAuthorise, authorise }:any) => {
     const [state, setState] = useState({
         userName: '',
         email: '',
@@ -20,10 +22,23 @@ const signup = () => {
                 email: state.email,
                 password: state.password,
             }),
-        }).then((response) => response.json())
-            .then((data) => console.log(data));
+        }).then((response) => {
+            if (response.status === 200) { setAuthorise(true); return response.json(); }
+            return null;
+        }).then((data) => {
+            if (data) {
+                localStorage.setItem('token', data.accessToken);
+            } else {
+                history.push('/signup');
+                setState({
+                    userName: '',
+                    email: '',
+                    password: '',
+                });
+            }
+        });
     };
-
+    if (authorise) { return (<Redirect to="/profile" />); }
     return (
         <div style={{ height: '100vh' }}>
             Signup Page
@@ -72,4 +87,4 @@ const signup = () => {
     );
 };
 
-export default signup;
+export default withRouter(signup);
