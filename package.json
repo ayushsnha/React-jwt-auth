@@ -2,10 +2,10 @@
   "name": "react-webpack-starter",
   "version": "1.0.0",
   "description": "React Boilerplate",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
-    "webpack-dev-server": "webpack-dev-server",
-    "dev": "webpack serve",
+    "build": "webpack --config webpack.prod.config.js",
+    "dev": "webpack serve --config webpack.dev.config.js --hot",
     "prod": "webpack --mode=production"
   },
   "keywords": [],

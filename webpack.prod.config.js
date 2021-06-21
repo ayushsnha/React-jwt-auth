@@ -2,25 +2,17 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    context: __dirname,
-    mode: 'development',
-    entry: './src/index.tsx',
+    mode: 'production',
+    entry: {
+        index: './src/index.tsx',
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        publicPath: '/',
+        publicPath: '',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    },
-    devServer: {
-        historyApiFallback: true,
-        proxy: {
-            '/api': {
-                target: 'http://localhost:4001',
-                secure: false,
-            },
-        },
     },
     module: {
         rules: [
